@@ -38,7 +38,7 @@ public class OI {
     
     public double getRotation(){
         
-        return driverController.getLeftX();
+        return -driverController.getLeftX();
        
     }
 }

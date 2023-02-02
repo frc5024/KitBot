@@ -14,6 +14,7 @@ public class Drive extends SubsystemBase {
   private WPI_TalonFX leftMaster;
   private WPI_TalonFX leftFollower;
 
+  //Set Singleton
   public static Drive getInstance() {
 		if (mInstance == null) {
 			mInstance = new Drive();
@@ -24,24 +25,22 @@ public class Drive extends SubsystemBase {
 	}
   public Drive() {
     super();
-    rightMaster = new WPI_TalonFX(1);
-    rightFollower = new WPI_TalonFX(2);
-    leftMaster = new WPI_TalonFX(3);
-    leftFollower = new WPI_TalonFX(4);
+    //
+    rightMaster = new WPI_TalonFX(3);
+    rightFollower = new WPI_TalonFX(4);
+    leftMaster = new WPI_TalonFX(1);
+    leftFollower = new WPI_TalonFX(2);
 
     leftFollower.follow(leftMaster);
     rightFollower.follow(rightMaster);
 
-    //Inverting left motors
-    
-    //leftMaster.setInverted(true);
   }
-
+  //Tells motors to go forwards/backwards
   public void setSpeed(double leftSpeed, double rightSpeed){
-    leftMaster.set(leftSpeed);
+    leftMaster.set(-leftSpeed);
     rightMaster.set(rightSpeed);
   }
-
+  //Tells motors to stop
   public void stop(){
 		leftMaster.stopMotor();
 		rightMaster.stopMotor();
