@@ -8,10 +8,11 @@ import frc.robot.commands.DriveCommand;
 
 public class Drive extends SubsystemBase {
   private static Drive mInstance = null;
-  private WPI_TalonFX talon1 = new WPI_TalonFX(1);
-  private WPI_TalonFX talon2 = new WPI_TalonFX(2);
-  private WPI_TalonFX talon3 = new WPI_TalonFX(3);
-  private WPI_TalonFX talon4 = new WPI_TalonFX(4);
+  
+  private WPI_TalonFX rightMaster;
+  private WPI_TalonFX rightFollower;
+  private WPI_TalonFX leftMaster;
+  private WPI_TalonFX leftFollower;
 
   public static Drive getInstance() {
 		if (mInstance == null) {
@@ -23,30 +24,27 @@ public class Drive extends SubsystemBase {
 	}
   public Drive() {
     super();
-    WPI_TalonFX talon1 = new WPI_TalonFX(1);
-    WPI_TalonFX talon2 = new WPI_TalonFX(2);
-    WPI_TalonFX talon3 = new WPI_TalonFX(3);
-    WPI_TalonFX talon4 = new WPI_TalonFX(4);
+    rightMaster = new WPI_TalonFX(1);
+    rightFollower = new WPI_TalonFX(2);
+    leftMaster = new WPI_TalonFX(3);
+    leftFollower = new WPI_TalonFX(4);
 
-    talon2.follow(talon1);
-    // talon1.setInverted(true);
-    // talon2.setInverted(true);
-    talon4.follow(talon3);
+    leftFollower.follow(leftMaster);
+    rightFollower.follow(rightMaster);
 
-    talon3.setInverted(true);
-    talon4.setInverted(true);
-
+    //Inverting left motors
+    
+    //leftMaster.setInverted(true);
   }
 
   public void setSpeed(double leftSpeed, double rightSpeed){
-    talon1.set(leftSpeed);
-    talon3.set(rightSpeed);
-
+    leftMaster.set(leftSpeed);
+    rightMaster.set(rightSpeed);
   }
 
   public void stop(){
-		talon1.stopMotor();
-		talon3.stopMotor();
+		leftMaster.stopMotor();
+		rightMaster.stopMotor();
 	}
 
 
