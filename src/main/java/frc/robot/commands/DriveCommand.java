@@ -46,7 +46,4 @@ public class DriveCommand extends CommandBase {
     public void end(boolean interrupted) {
         driveTrain.stop();
     }
-
-    
-
 }
