@@ -23,24 +23,20 @@ public class Drive extends SubsystemBase {
 	}
   public Drive() {
     super();
-    WPI_TalonFX talon1 = new WPI_TalonFX(1);
-    WPI_TalonFX talon2 = new WPI_TalonFX(2);
-    WPI_TalonFX talon3 = new WPI_TalonFX(3);
-    WPI_TalonFX talon4 = new WPI_TalonFX(4);
+
+    // talon3.setInverted(true);
+    // talon4.setInverted(true);
 
     talon2.follow(talon1);
     // talon1.setInverted(true);
     // talon2.setInverted(true);
     talon4.follow(talon3);
 
-    talon3.setInverted(true);
-    talon4.setInverted(true);
-
   }
 
   public void setSpeed(double leftSpeed, double rightSpeed){
     talon1.set(leftSpeed);
-    talon3.set(rightSpeed);
+    talon3.set(rightSpeed*-1);
 
   }
 

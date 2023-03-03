@@ -25,8 +25,8 @@ public class DriveCommand extends CommandBase {
         //DriveTrain.getInstance().handleDriverInputs(oi.getSpeed(), oi.getRotation());
 		if(Math.abs(rotate) < 0.1){
             rotate = 0;
-
         }
+        rotate*=0.8;
 		double leftSpeed = oi.getSpeed() + rotate;
 		double rightSpeed = oi.getSpeed() - rotate;
 

@@ -18,12 +18,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   XboxController controller = new XboxController(0);
-
-  private WPI_TalonFX talon1 = new WPI_TalonFX(1);
-  private WPI_TalonFX talon2 = new WPI_TalonFX(2);
-
-  private WPI_TalonFX talon3 = new WPI_TalonFX(3);
-  private WPI_TalonFX talon4 = new WPI_TalonFX(4);
+  DriveCommand drive = new DriveCommand();
 
   @Override
   public void robotInit() {
@@ -58,7 +53,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    drive.schedule();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -68,18 +63,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    new DriveCommand().schedule();
-    // if(controller.getAButton()){
-    //     talon1.set(.5);
-    //     talon2.set(.5);
-    //     talon3.set(.5);
-    //     talon4.set(.5);
-    // }else{
-    //   talon1.set(0);
-    //   talon2.set(0);
-    //   talon3.set(0);
-    //   talon4.set(0);
-    //}
+    
   }
 
   @Override
